@@ -45,6 +45,13 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public void deleteNote(UUID id) {
+
+        Note note = noteRepository.findById(id);
+
+        if (note == null) {
+            throw new NoteNotFoundException("Error: Note not found with id: " + id);
+        }
+
         noteRepository.deleteById(id);
     }
 }
