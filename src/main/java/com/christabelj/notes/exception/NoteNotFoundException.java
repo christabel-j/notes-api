@@ -1,4 +1,9 @@
 package com.christabelj.notes.exception;
 
-public class NoteNotFoundException {
+public class NoteNotFoundException extends RuntimeException {
+
+    public NoteNotFoundException(String message) {
+        super(message);
+    }
+
 }

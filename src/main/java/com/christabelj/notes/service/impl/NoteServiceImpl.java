@@ -1,5 +1,6 @@
 package com.christabelj.notes.service.impl;
 
+import com.christabelj.notes.exception.NoteNotFoundException;
 import com.christabelj.notes.model.Note;
 import com.christabelj.notes.repository.NoteRepository;
 import com.christabelj.notes.service.NoteService;
@@ -22,7 +23,14 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Note getNoteById(UUID id) {
-        return noteRepository.findById(id);
+
+        Note note = noteRepository.findById(id);
+
+        if (note == null) {
+            throw new NoteNotFoundException("Error: Note not found with id: " + id);
+        }
+
+        return note;
     }
 
     @Override
